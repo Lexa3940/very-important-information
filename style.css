@@ -59,33 +59,25 @@ button.no-btn {
     left: 50%;
     transform: translateX(-50%);
 }
-/* Основные стили остаются такими же */
 
-button.no-btn {
-    background: white;
-    color: #e94d58;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Медиазапрос для небольших экранов */
+/* Медиазапрос для экранов до 500px */
 @media (max-width: 500px) {
     .btn-group {
         display: flex;
-        flex-direction: column; /* Выровнять кнопки вертикально */
-        align-items: center; /* Центрировать кнопки */
-        position: static; /* Убрать относительное позиционирование */
+        flex-direction: column;
+        align-items: center;
+        position: static; /* Убираем абсолютное позиционирование */
     }
 
     button {
-        width: 100%; /* Растянуть кнопки на всю ширину контейнера */
-        margin: 10px 0; /* Добавить отступы между кнопками */
+        width: 100%; /* Ширина кнопок на 100% ширины контейнера */
+        margin: 10px 0; /* Отступы между кнопками */
     }
 
     button.no-btn {
-        position: static; /* Убрать абсолютное позиционирование */
-        transform: none;  /* Убрать трансформацию */
+        position: static; /* Убираем абсолютное позиционирование для кнопки No */
+        transform: none;  /* Убираем трансформацию */
         margin-top: 10px; /* Отступ между кнопками */
     }
 }
+
