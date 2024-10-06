@@ -20,9 +20,25 @@ noBtn.addEventListener("mouseover", () => {
   const maxX = wrapperRect.width - noBtnRect.width;
   const maxY = wrapperRect.height - noBtnRect.height;
 
-  const randomX = Math.floor(Math.random() * maxX);
-  const randomY = Math.floor(Math.random() * maxY);
+  // Detect touch devices
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
 
-  noBtn.style.left = randomX + "px";
-  noBtn.style.top = randomY + "px";
+  // Move the button to the side for touch devices
+  if (isTouchDevice) {
+    // Move to the right if there is space, otherwise to the left
+    const randomSide = Math.random() < 0.5 ? 'right' : 'left';
+    if (randomSide === 'right' && maxX - noBtnRect.x > 0) {
+      noBtn.style.left = maxX + "px";
+    } else {
+      noBtn.style.left = "0px";
+    }
+  } else {
+    // Random position for non-touch devices
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+  }
 });
+
