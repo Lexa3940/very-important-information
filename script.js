@@ -3,22 +3,19 @@ const noBtn = document.querySelector(".no-btn");
 const question = document.querySelector(".question");
 const gif = document.querySelector(".gif");
 
-// Изменить текст и gif при нажатии кнопки "Да"
+// Изменяем текст и GIF при нажатии на кнопку "Yes"
 yesBtn.addEventListener("click", () => {
-    question.innerHTML = "тест пройден успешно 😈💗";
+    question.innerHTML = "the test was passed successfully 😈";
     gif.src = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGI1cW5wMWhpaDF5b3pjdTF0OHZrcHJvaGkzOHJteDhmd245OGRnZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vuw9m5wXviFIQ/giphy.gif";
-    gif.style.display = "block"; // Показываем gif
-    yesBtn.style.display = "none"; // Скрываем кнопку "Да"
-    noBtn.style.display = "none"; // Скрываем кнопку "Нет"
 });
 
-// Заставить кнопку "Нет" случайно перемещаться при наведении
-noBtn.addEventListener("mouseover", () => {
+// Функция для перемещения кнопки "No"
+const moveNoButton = () => {
     const wrapper = document.querySelector(".wrapper");
     const wrapperRect = wrapper.getBoundingClientRect();
     const noBtnRect = noBtn.getBoundingClientRect();
 
-    // Рассчитать максимальные позиции, чтобы кнопка оставалась в пределах оболочки
+    // Расчет максимальных позиций, чтобы кнопка оставалась в рамках контейнера
     const maxX = wrapperRect.width - noBtnRect.width;
     const maxY = wrapperRect.height - noBtnRect.height;
 
@@ -27,5 +24,11 @@ noBtn.addEventListener("mouseover", () => {
 
     noBtn.style.left = randomX + "px";
     noBtn.style.top = randomY + "px";
-});
+};
 
+// Перемещение кнопки "No" при наведении и касании
+noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("touchstart", (event) => {
+    event.preventDefault(); // Предотвращаем стандартное поведение касания
+    moveNoButton();
+});
