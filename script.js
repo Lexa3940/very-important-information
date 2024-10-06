@@ -8,6 +8,9 @@ yesBtn.addEventListener("click", () => {
   question.innerHTML = "the test was passed successfully 😈💗";
   gif.src =
     "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGI1cW5wMWhpaDF5b3pjdTF0OHZrcHJvaGkzOHJteDhmd245OGRnZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vuw9m5wXviFIQ/giphy.gif";
+  // Скрываем кнопки после изменения текста
+  yesBtn.style.display = "none";
+  noBtn.style.display = "none";
 });
 
 // Make the No button move randomly on hover
