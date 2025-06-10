@@ -1,84 +1,130 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: rgb(215, 145, 145);
+  overflow: hidden; /* Чтобы сердечки не создавали скролл */
 }
 
 .wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  z-index: 10; /* Чтобы контент был поверх сердечек */
 }
 
 h2 {
-    font-size: 2em;
-    color: #e94d58;
-    margin: 15px 0;
+  font-size: 2em;
+  color: #870c14;
+  margin: 15px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .gif {
-    width: 100%;
-    max-width: 300px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn-group {
-    margin-top: 50px;
-    position: relative;
-    height: 40px;
+  margin-top: 50px;
+  position: relative;
+  height: 40px;
 }
 
 button {
-    width: 150px;
-    height: inherit;
-    color: white;
-    font-size: 1.2em;
-    border-radius: 30px;
-    outline: none;
-    cursor: pointer;
-    box-shadow: 0 2px 4px gray;
-    border: 2px solid #e94d58;
+  width: 150px;
+  height: inherit;
+  color: white;
+  font-size: 1.2em;
+  border-radius: 30px;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px gray;
+  border: 2px solid #e94d58;
+  transition: transform 0.2s ease;
 }
 
 button.yes-btn {
-    background: #e94d58;
+  background: #e94d58;
 }
 
 button.no-btn {
-    background: white;
-    color: #e94d58;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+  background: white;
+  color: #e94d58;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-/* Медиазапрос для экранов до 500px */
+/* Анимация сердечек на весь экран */
+.hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heart {
+  position: absolute;
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e94d58"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>')
+    no-repeat center center;
+  background-size: contain;
+  animation: animate 15s linear infinite;
+  opacity: 0;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(100vh) scale(0.2) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-20vh) scale(1) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Медиазапрос для мобильных */
 @media (max-width: 500px) {
-    .btn-group {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: static; /* Убираем абсолютное позиционирование */
-    }
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: static;
+  }
 
-    button {
-        width: 100%; /* Ширина кнопок на 100% ширины контейнера */
-        margin: 10px 0; /* Отступы между кнопками */
-    }
+  button {
+    width: 100%;
+    margin: 10px 0;
+  }
 
-    button.no-btn {
-        position: static; /* Убираем абсолютное позиционирование для кнопки No */
-        transform: none;  /* Убираем трансформацию */
-        margin-top: 10px; /* Отступ между кнопками */
-    }
+  button.no-btn {
+    position: static;
+    transform: none;
+    margin-top: 10px;
+  }
 }
 
 
